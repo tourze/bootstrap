@@ -1,0 +1,41 @@
+{
+  "name": "tourze/bootstrap",
+  "description": "bootstrap",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "YwiSax",
+      "email": "25803471@qq.com"
+    }
+  ],
+  "require": {
+    "tourze/core": "dev-master",
+    "tourze/flow": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "tourze\\Bootstrap\\": "src/"
+    },
+    "files": [
+      "bootstrap.php"
+    ]
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://git.oschina.net/ywisax/com.tourze.php.core.git"
+    },
+    {
+      "type": "git",
+      "url": "https://git.oschina.net/ywisax/com.tourze.php.flow.git"
+    },
+    {
+      "type": "composer",
+      "url": "http://php.composer.org/repo/packagist/"
+    },
+    {
+      "packagist": false
+    }
+  ]
+}
