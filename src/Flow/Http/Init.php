@@ -75,38 +75,7 @@ class Init extends Layer implements HandlerInterface
                 $requestedWith = $_SERVER['HTTP_X_REQUESTED_WITH'];
             }
 
-            if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])
-                && isset($_SERVER['REMOTE_ADDR'])
-                && in_array($_SERVER['REMOTE_ADDR'], Request::$trustedProxies)
-            )
-            {
-                // Use the forwarded IP address, typically set when the
-                // client is using a proxy server.
-                // Format: "X-Forwarded-For: client1, proxy1, proxy2"
-                $clientIps = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-
-                Request::$clientIp = array_shift($clientIps);
-
-                unset($clientIps);
-            }
-            elseif (isset($_SERVER['HTTP_CLIENT_IP'])
-                && isset($_SERVER['REMOTE_ADDR'])
-                && in_array($_SERVER['REMOTE_ADDR'], Request::$trustedProxies)
-            )
-            {
-                // Use the forwarded IP address, typically set when the
-                // client is using a proxy server.
-                $clientIps = explode(',', $_SERVER['HTTP_CLIENT_IP']);
-
-                Request::$clientIp = array_shift($clientIps);
-
-                unset($clientIps);
-            }
-            elseif (isset($_SERVER['REMOTE_ADDR']))
-            {
-                // The remote IP address
-                Request::$clientIp = $_SERVER['REMOTE_ADDR'];
-            }
+            Request::$clientIp = Request::getClientIP();
 
             if ($method !== Http::GET)
             {
