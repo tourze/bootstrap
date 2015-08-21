@@ -28,6 +28,7 @@ class Base extends Layer implements HandlerInterface
 
         Route::$lowerUri = true;
 
+        // 下面这样try catch，效率比较低，需要更改下
         try
         {
             Route::get('default');
