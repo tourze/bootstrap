@@ -2,11 +2,9 @@
 
 namespace tourze\Bootstrap\Flow;
 
-use tourze\Base\I18n;
 use tourze\Flow\HandlerInterface;
 use tourze\Flow\Layer;
 use tourze\Base\Helper\Url;
-use tourze\Route\Exception\RouteNotFoundException;
 use tourze\Route\Route;
 
 /**
@@ -24,16 +22,10 @@ class Base extends Layer implements HandlerInterface
      */
     public function handle()
     {
-        I18n::lang('zh-cn');
-
         Route::$lowerUri = true;
 
         // 下面这样try catch，效率比较低，需要更改下
-        try
-        {
-            Route::get('default');
-        }
-        catch (RouteNotFoundException $e)
+        if ( ! Route::exists('default'))
         {
             Route::set('default', '(<controller>(/<action>(/<id>)))')
                 ->defaults([
