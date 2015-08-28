@@ -1,12 +1,12 @@
 {
   "name": "tourze/bootstrap",
-  "description": "bootstrap",
+  "description": "途者框架，快速组装",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
       "name": "tourze",
-      "email": "25803471@qq.com"
+      "email": "dev@tourze.com"
     }
   ],
   "require": {
