@@ -11,7 +11,9 @@
   ],
   "require": {
     "tourze/core": "dev-master",
-    "tourze/flow": "dev-master"
+    "tourze/flow": "dev-master",
+    "tourze/route": "dev-master",
+    "tourze/http": "dev-master"
   },
   "autoload": {
     "psr-4": {
@@ -19,6 +21,14 @@
     },
     "files": [
       "bootstrap.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "tourze\\Bootstrap\\": "tests/"
+    },
+    "files": [
+      "bootstrap-dev.php"
     ]
   }
 }
