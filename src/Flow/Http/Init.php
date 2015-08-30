@@ -36,7 +36,8 @@ class Init extends Layer implements HandlerInterface
         //echo "httpInit1:" . spl_object_hash($request) . "<br>\n";
 
         // 如果当前请求是初始请求，那么对其进行额外处理
-        if ($request->isInitial())
+        // 如果当前请求是CLI，那么直接当做为初始化请求
+        if (PHP_SAPI == 'cli' || $request->isInitial())
         {
             if (
                 ( ! empty($_SERVER['HTTPS']) && filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN))
