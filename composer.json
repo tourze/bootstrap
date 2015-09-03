@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "tourze/core": "dev-master",
+    "tourze/base": "dev-master",
     "tourze/flow": "dev-master",
     "tourze/route": "dev-master",
     "tourze/http": "dev-master"
