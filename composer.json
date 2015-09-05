@@ -10,10 +10,10 @@
     }
   ],
   "require": {
-    "tourze/base": "dev-master",
-    "tourze/flow": "dev-master",
-    "tourze/route": "dev-master",
-    "tourze/http": "dev-master"
+    "tourze/base": "^1.0",
+    "tourze/flow": "^1.0",
+    "tourze/route": "^1.0",
+    "tourze/http": "^1.0"
   },
   "autoload": {
     "psr-4": {

@@ -8,7 +8,7 @@ use tourze\Flow\Layer;
 /**
  * HTTP认证
  *
- * @package tourze\Mvc\Flow
+ * @package tourze\Bootstrap\Flow\Http
  */
 class Authentication extends Layer implements HandlerInterface
 {
@@ -20,5 +20,6 @@ class Authentication extends Layer implements HandlerInterface
      */
     public function handle()
     {
+        // empty
     }
 }

@@ -12,9 +12,9 @@ use tourze\Http\Request;
 /**
  * HTTP初始化
  *
- * @package tourze\Mvc\Flow
+ * @package tourze\Bootstrap\Flow\Http
  */
-class Init extends Layer implements HandlerInterface
+class Initialization extends Layer implements HandlerInterface
 {
 
     /**
@@ -32,8 +32,6 @@ class Init extends Layer implements HandlerInterface
 
         /** @var Request $request */
         $request =& $this->flow->contexts['request'];
-        //var_dump($request->isInitial());
-        //echo "httpInit1:" . spl_object_hash($request) . "<br>\n";
 
         // 如果当前请求是初始请求，那么对其进行额外处理
         // 如果当前请求是CLI，那么直接当做为初始化请求
@@ -61,19 +59,16 @@ class Init extends Layer implements HandlerInterface
 
             if (isset($_SERVER['HTTP_REFERER']))
             {
-                // There is a referrer for this request
                 $referrer = $_SERVER['HTTP_REFERER'];
             }
 
             if (isset($_SERVER['HTTP_USER_AGENT']))
             {
-                // Browser type
                 Request::$userAgent = $_SERVER['HTTP_USER_AGENT'];
             }
 
             if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
             {
-                // Typically used to denote AJAX requests
                 $requestedWith = $_SERVER['HTTP_X_REQUESTED_WITH'];
             }
 
@@ -81,7 +76,6 @@ class Init extends Layer implements HandlerInterface
 
             if ($method !== Http::GET)
             {
-                // Ensure the raw body is saved for future use
                 $body = file_get_contents('php://input');
             }
 
@@ -94,7 +88,6 @@ class Init extends Layer implements HandlerInterface
                 }
             }
 
-            // Store global GET and POST data in the initial request only
             $request->protocol = $protocol;
             $request
                 ->query($_GET)
@@ -102,33 +95,24 @@ class Init extends Layer implements HandlerInterface
 
             if (isset($method))
             {
-                // Set the request method
                 $request->method = $method;
             }
             if (isset($referrer))
             {
-                // Set the referrer
                 $request->referrer = $referrer;
             }
             if (isset($requestedWith))
             {
-                // Apply the requested with variable
                 $request->requestedWith = $requestedWith;
             }
             if (isset($body))
             {
-                // Set the request body (probably a PUT type)
                 $request->body = $body;
             }
             if (isset($cookies))
             {
                 $request->cookie($cookies);
             }
-
-            //var_dump($request->query());
-            //var_dump($request->isInitial());
-            //echo "httpInit2:" . spl_object_hash($request) . "<br>\n";
-            //$this->flow->contexts['request'] = $request;
         }
     }
 }

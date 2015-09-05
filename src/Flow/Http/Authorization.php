@@ -8,7 +8,7 @@ use tourze\Flow\Layer;
 /**
  * HTTP授权
  *
- * @package tourze\Mvc\Flow
+ * @package tourze\Bootstrap\Flow\Http
  */
 class Authorization extends Layer implements HandlerInterface
 {
@@ -20,5 +20,6 @@ class Authorization extends Layer implements HandlerInterface
      */
     public function handle()
     {
+        // empty
     }
 }

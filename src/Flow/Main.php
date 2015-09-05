@@ -2,17 +2,18 @@
 
 namespace tourze\Bootstrap\Flow;
 
+use tourze\Base\Base;
 use tourze\Flow\HandlerInterface;
 use tourze\Flow\Layer;
 use tourze\Base\Helper\Url;
 use tourze\Route\Route;
 
 /**
- * SDK框架执行流
+ * 主体执行流
  *
- * @package tourze\Mvc\Flow
+ * @package tourze\Bootstrap\Flow
  */
-class Base extends Layer implements HandlerInterface
+class Main extends Layer implements HandlerInterface
 {
 
     /**
@@ -22,11 +23,13 @@ class Base extends Layer implements HandlerInterface
      */
     public function handle()
     {
+        Base::getLog()->debug(__METHOD__ . ' handle main flow - start');
+
         Route::$lowerUri = true;
 
-        // 下面这样try catch，效率比较低，需要更改下
         if ( ! Route::exists('default'))
         {
+            Base::getLog()->debug(__METHOD__ . ' set default route');
             Route::set('default', '(<controller>(/<action>(/<id>)))')
                 ->defaults([
                     'controller' => 'Site',
@@ -35,5 +38,7 @@ class Base extends Layer implements HandlerInterface
         }
 
         $this->flow->contexts['uri'] = Url::detectUri();
+
+        Base::getLog()->debug(__METHOD__ . ' handle main flow - end');
     }
 }

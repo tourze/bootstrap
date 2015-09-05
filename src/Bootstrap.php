@@ -14,7 +14,7 @@ class Bootstrap
      * @var array SDK工作流分层
      */
     public static $layers = [
-        'tourze\Bootstrap\Flow\Base',  // SDK基础工作层
+        'tourze\Bootstrap\Flow\Main',  // SDK基础工作层
         'tourze\Bootstrap\Flow\Http', // 执行HTTP相关控制
     ];
 

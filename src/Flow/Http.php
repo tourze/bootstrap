@@ -2,6 +2,7 @@
 
 namespace tourze\Bootstrap\Flow;
 
+use tourze\Base\Base;
 use tourze\Flow\Flow;
 use tourze\Flow\HandlerInterface;
 use tourze\Flow\Layer;
@@ -10,7 +11,7 @@ use tourze\Http\Request;
 /**
  * HTTP请求和处理流
  *
- * @package tourze\Mvc\Flow
+ * @package tourze\Bootstrap\Flow
  */
 class Http extends Layer implements HandlerInterface
 {
@@ -22,6 +23,8 @@ class Http extends Layer implements HandlerInterface
      */
     public function handle()
     {
+        Base::getLog()->debug(__METHOD__ . ' handle request flow - start');
+
         $request = new Request($this->flow->contexts['uri']);
 
         // 上下文
@@ -31,7 +34,7 @@ class Http extends Layer implements HandlerInterface
         $flow = Flow::instance('tourze-http');
         $flow->contexts =& $this->flow->contexts;
         $flow->layers = [
-            'tourze\Bootstrap\Flow\Http\Init', // HTTP初始化
+            'tourze\Bootstrap\Flow\Http\Initialization', // HTTP初始化
             'tourze\Bootstrap\Flow\Http\Authentication', // HTTP认证
             'tourze\Bootstrap\Flow\Http\Authorization',  // HTTP授权
         ];
@@ -39,11 +42,10 @@ class Http extends Layer implements HandlerInterface
 
         // 执行请求
         $response = $request->execute();
-        /**
-         * 执行主请求
-         */
         echo $response
             ->sendHeaders(true)
             ->body;
+
+        Base::getLog()->debug(__METHOD__ . ' handle request flow - end');
     }
 }
