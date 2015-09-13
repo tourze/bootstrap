@@ -1,8 +1,8 @@
 {
   "name": "tourze/bootstrap",
-  "description": "途者框架，快速组装",
+  "description": "包含常用组件，快速搭建项目",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "tourze",
