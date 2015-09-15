@@ -25,8 +25,6 @@ class Main extends Layer implements HandlerInterface
     {
         Base::getLog()->debug(__METHOD__ . ' handle main flow - start');
 
-        Route::$lowerUri = true;
-
         if ( ! Route::exists('default'))
         {
             Base::getLog()->debug(__METHOD__ . ' set default route');

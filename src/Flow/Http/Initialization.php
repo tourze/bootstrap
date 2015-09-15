@@ -2,7 +2,6 @@
 
 namespace tourze\Bootstrap\Flow\Http;
 
-use tourze\Base\Base;
 use tourze\Flow\HandlerInterface;
 use tourze\Flow\Layer;
 use tourze\Base\Helper\Cookie;
@@ -24,12 +23,6 @@ class Initialization extends Layer implements HandlerInterface
      */
     public function handle()
     {
-        // 决定当前使用的协议版本
-        if (isset($_SERVER['SERVER_PROTOCOL']))
-        {
-            Base::getHttp()->protocol = $_SERVER['SERVER_PROTOCOL'];
-        }
-
         /** @var Request $request */
         $request =& $this->flow->contexts['request'];
 
@@ -45,8 +38,6 @@ class Initialization extends Layer implements HandlerInterface
             {
                 $request->secure = true;
             }
-
-            $protocol = Base::getHttp()->protocol;
 
             if (isset($_SERVER['REQUEST_METHOD']))
             {
@@ -88,7 +79,11 @@ class Initialization extends Layer implements HandlerInterface
                 }
             }
 
-            $request->protocol = $protocol;
+            if (isset($_SERVER['SERVER_PROTOCOL']))
+            {
+                $request->protocol = $_SERVER['SERVER_PROTOCOL'];
+            }
+
             $request
                 ->query($_GET)
                 ->post($_POST);
